@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Pytest
+.pytest_cache/
+
+# Environment variables
+.env
+.env.local
+
+# Database
+*.db
+
+# Uploaded files
+uploads/
+
+# Temporary test data
+test_data/
+
+# IDE
+.vscode/
+.idea/
