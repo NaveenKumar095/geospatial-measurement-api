@@ -5,9 +5,12 @@ def prepare_for_measurement(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
     if gdf.crs is None:
         raise ValueError("Input file has no CRS information")
 
+    # Empty geometries cannot be used to determine a UTM zone.
+    if gdf.geometry.is_empty.all():
+        return gdf
+
     # Geographic CRS (latitude/longitude)
     if gdf.crs.is_geographic:
-        # Automatically select a suitable local projected CRS
         projected_crs = gdf.estimate_utm_crs()
 
         if projected_crs is None:

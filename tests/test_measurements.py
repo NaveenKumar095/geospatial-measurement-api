@@ -86,3 +86,24 @@ def test_geographic_crs_is_projected():
     measured = prepare_for_measurement(gdf)
 
     assert measured.crs.is_projected
+
+
+def test_unsupported_geometry():
+    from shapely.geometry import GeometryCollection
+
+    gdf = gpd.GeoDataFrame(
+        {
+            "name": ["Unsupported"],
+            "geometry": [
+                GeometryCollection()
+            ],
+        },
+        crs="EPSG:4326",
+    )
+
+    measured = prepare_for_measurement(gdf)
+    result = calculate_measurements(measured)
+
+    assert result[0]["area_m2"] is None
+    assert result[0]["length_m"] is None
+    assert "warning" in result[0]
