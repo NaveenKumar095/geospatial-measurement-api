@@ -30,17 +30,17 @@ The API accepts a ZIP archive containing a Shapefile (`.shp`) or KML (`.kml`), e
 
 ## Tech Stack
 
-| Technology | Purpose |
-|---|---|
-| Python 3.12 | Backend language |
-| FastAPI | REST API framework |
-| GeoPandas | Geospatial data processing |
-| Shapely | Geometry operations |
-| PyProj | CRS transformation |
-| Pyogrio | Geospatial file I/O |
-| SQLAlchemy | Database ORM |
-| SQLite | Local metadata storage |
-| Pytest | Automated testing |
+| Technology  | Purpose                    |
+| ----------- | -------------------------- |
+| Python 3.12 | Backend language           |
+| FastAPI     | REST API framework         |
+| GeoPandas   | Geospatial data processing |
+| Shapely     | Geometry operations        |
+| PyProj      | CRS transformation         |
+| Pyogrio     | Geospatial file I/O        |
+| SQLAlchemy  | Database ORM               |
+| SQLite      | Local metadata storage     |
+| Pytest      | Automated testing          |
 
 ---
 
@@ -101,7 +101,7 @@ geospatial-measurement-api/
 ## 1. Clone the repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/NaveenKumar095/geospatial-measurement-api.git
 cd geospatial-measurement-api
 ```
 
@@ -483,14 +483,14 @@ If CRS information is missing, the application raises an error instead of silent
 
 # Geometry Measurement Rules
 
-| Geometry | Measurement |
-|---|---|
-| Polygon | Area in m² |
-| MultiPolygon | Area in m² |
-| LineString | Length in m |
-| MultiLineString | Length in m |
-| Point | No measurement |
-| Unsupported geometry | Warning |
+| Geometry             | Measurement    |
+| -------------------- | -------------- |
+| Polygon              | Area in m²     |
+| MultiPolygon         | Area in m²     |
+| LineString           | Length in m    |
+| MultiLineString      | Length in m    |
+| Point                | No measurement |
+| Unsupported geometry | Warning        |
 
 For unsupported geometries, the API does not attempt to invent a measurement. Instead, it returns a warning.
 
@@ -500,13 +500,11 @@ For unsupported geometries, the API does not attempt to invent a measurement. In
 
 The API handles several invalid-input scenarios.
 
-### Missing file
+### File ID does not exist
 
 Returns:
 
-```text
-400 Bad Request
-```
+404 Not Found
 
 ### Non-ZIP upload
 
